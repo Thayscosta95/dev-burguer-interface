@@ -6,8 +6,7 @@ import {
   RightContainer, 
   Title, 
   InputContainer, 
-  Label, 
-  Link, 
+  Label,  
   Form, 
   Button, 
   Input  
@@ -22,7 +21,9 @@ export function Login() {
       </LeftContainer>
       <RightContainer>
         <Title>
-        Olá, seja bem vindo ao<span> Dev Burguer!</span> Acesse com seu Login e senha.
+        Olá, seja bem vindo ao<span> Dev Burguer!</span> 
+        <br />
+        Acesse com seu <span>Login e senha.</span>
       </Title>
       <Form>
         <InputContainer>
@@ -35,11 +36,12 @@ export function Login() {
           <Input type="password" placeholder="Digite sua senha" />
         </InputContainer>
 
-        <Link>Esqueci minha senha</Link>
         <Button>Entrar</Button>
       </Form>
 
-      <Link>Não possui conta? <span>Clique aqui para se cadastrar</span></Link>
+      <p>
+        Não possui conta? <a>Clique aqui</a>
+      </p>
 
 
     </RightContainer>
