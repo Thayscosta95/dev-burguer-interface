@@ -64,6 +64,7 @@ export const Title = styled.h2`
 
     span{
         color: #9758A6;
+        font-family: "Road Rage", sans-serif;
 
     }
 
@@ -84,31 +85,49 @@ export const InputContainer = styled.div`
     flex-direction: column;
     gap: 5px;
     width: 100%;
+    
+
+    input{
+        width: 100%;
+        border: none;
+        height: 52px;
+        border-radius: 5px;
+        padding: 0 16px;
+    }
+
+    label{
+        font-size: 18px;
+        font-weight: 600;
+        color: #fff;
+    }
+
+    p{
+        font-size: 14px;
+        line-height: 80%;
+        color: #9758A6;
+        font-weight: 600;
+        height: 10px;
+    }
+
+
+
+
+
+
+
+
+
+
 `;
 
 
 
 export const Label = styled.label`
-    font-size: 18px;
-    font-weight: 600;
-    color: #fff;
 `;
 
-export const Button = styled.button`
-    background-color: #9758A6;
-    color: #fff;
-    border: none;
-    height: 52px;
-    border-radius: 5px;
-    padding: 0 16px;
-    cursor: pointer;
-`;
+
 
 export const Input = styled.input`
-    width: 100%;
-    border: none;
-    height: 52px;
-    border-radius: 5px;
-    padding: 0 16px;
+    
 
 `;
