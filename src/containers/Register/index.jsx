@@ -19,12 +19,14 @@ import {
 } from './styles';
 
 
-export function Login() {
+export function Register() {
 
   const schema = yup
     .object({
+      name: yup.string().required('O nome é obrigatório'),
       email: yup.string().email('Digite um e-mail valido').required('O e-mail é obrigatório'),
       password: yup.string().min(6, 'A senha deve ter pelo menos 6 caracteres').required('A senha é obrigatória'),
+      confirmPassword: yup.string().oneOf([yup.ref('password'), null], 'As senhas devem ser iguais').required('Confirme sua senha'),
     })
     .required();
 
@@ -44,15 +46,17 @@ export function Login() {
   const onSubmit = async (data) => {
      
     const response = await toast.promise(
-      api.post('/sessions', {
+      api.post('/users', {
+        name: data.name,
         email: data.email,
         password: data.password,
+        admin: false,
       }),
       {
         pending: 'Verificando seus dados',
-        success: 'Seja bem-vindo(a)!',
-        error: 'E-mail ou senha incorretos',
-      }
+        success: 'Cadastro realizado com sucesso!',
+        error: 'Ops, algo deu errado. Tente novamente.',
+      },
     );
     console.log(response);
   };
@@ -65,11 +69,15 @@ export function Login() {
       </LeftContainer>
       <RightContainer>
         <Title>
-          Olá, seja bem vindo ao<span> Dev Burguer!</span>
-          <br />
-          Acesse com seu <span>Login e senha.</span>
+          Criar conta
         </Title>
         <Form onSubmit={handleSubmit(onSubmit)}>
+          <InputContainer> 
+            <Label>Name</Label>
+            <Input type="text" placeholder="Digite seu nome" {...register('name')} />
+            <p>{errors?.name?.message}</p>
+          </InputContainer>
+
           <InputContainer> 
             <Label>Email</Label>
             <Input type="email" placeholder="Digite seu email" {...register('email')} />
@@ -77,16 +85,22 @@ export function Login() {
           </InputContainer>
 
           <InputContainer>
-            <Label>Senha</Label>''
+            <Label>Senha</Label>
             <Input type="password" placeholder="Digite sua senha" {...register('password')} />
             <p>{errors?.password?.message}</p>
           </InputContainer>
 
-          <Button type="submit">Entrar</Button>
+          <InputContainer> 
+            <Label>Confirmar Senha</Label>
+            <Input type="password" placeholder="Digite sua senha novamente" {...register('confirmPassword')} />
+            <p>{errors?.confirmPassword?.message}</p>
+          </InputContainer>
+
+          <Button type="submit">Cadastrar</Button>
         </Form>
 
         <p>
-          Não possui conta? <a>Clique aqui</a>
+          Já possui conta? <a>Clique aqui</a>
         </p>
 
 
